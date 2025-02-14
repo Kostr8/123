@@ -1,23 +1,23 @@
 # -*- coding: cp1251 -*-
 
-#print("хуй")
+#print("ГµГіГ©")
 
 import telebot
 import time
 
-bot = telebot.TeleBot('7700621878:AAF2bmL1zNP6CWtAlCuquVO9_pr1ww21Y7Q')
+bot = telebot.TeleBot('')
 
-#Обработака команды /start
+#ГЋГЎГ°Г ГЎГ®ГІГ ГЄГ  ГЄГ®Г¬Г Г­Г¤Г» /start
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, "Привет! Я пришёл спасти икстеров от ПИДОРЫ. Напиши /help, чтобы узнать, что я умею. ")
+    bot.reply_to(message, "ГЏГ°ГЁГўГҐГІ! Гџ ГЇГ°ГЁГёВёГ« Г±ГЇГ Г±ГІГЁ ГЁГЄГ±ГІГҐГ°Г®Гў Г®ГІ ГЏГ€Г„ГЋГђГ›. ГЌГ ГЇГЁГёГЁ /help, Г·ГІГ®ГЎГ» ГіГ§Г­Г ГІГј, Г·ГІГ® Гї ГіГ¬ГҐГѕ. ")
 
-#Обработака команды /help
+#ГЋГЎГ°Г ГЎГ®ГІГ ГЄГ  ГЄГ®Г¬Г Г­Г¤Г» /help
 @bot.message_handler(commands=['help'])
 def help(message):
-    bot.reply_to(message, "/kick - кикнуть пользователя")
+    bot.reply_to(message, "/kick - ГЄГЁГЄГ­ГіГІГј ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї")
 
-#Обработка кика
+#ГЋГЎГ°Г ГЎГ®ГІГЄГ  ГЄГЁГЄГ 
 @bot.message_handler(commands=['kick'])
 def kick_user(message):
     if message.reply_to_message:
@@ -25,15 +25,15 @@ def kick_user(message):
         user_id = message.reply_to_message.from_user.id
         user_status = bot.get_chat_member(chat_id, user_id).status
         if user_status == 'administrator' or user_status == 'creator':
-            bot.reply_to(message, "Невозможно кикнуть администратора.")
+            bot.reply_to(message, "ГЌГҐГўГ®Г§Г¬Г®Г¦Г­Г® ГЄГЁГЄГ­ГіГІГј Г Г¤Г¬ГЁГ­ГЁГ±ГІГ°Г ГІГ®Г°Г .")
         else:
             bot.kick_chat_member(chat_id, user_id)
-            bot.reply_to(message, f"Пользователь {message.reply_to_message.from_user.username} был кикнут.")
+            bot.reply_to(message, f"ГЏГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гј {message.reply_to_message.from_user.username} ГЎГ»Г« ГЄГЁГЄГ­ГіГІ.")
     else:
-        bot.reply_to(message, "Эта команда должна быть использована в ответ на сообщение пользователя, которого вы хотите кикнуть.")
+        bot.reply_to(message, "ГќГІГ  ГЄГ®Г¬Г Г­Г¤Г  Г¤Г®Г«Г¦Г­Г  ГЎГ»ГІГј ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г­Г  Гў Г®ГІГўГҐГІ Г­Г  Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї, ГЄГ®ГІГ®Г°Г®ГЈГ® ГўГ» ГµГ®ГІГЁГІГҐ ГЄГЁГЄГ­ГіГІГј.")
 
 
-#Передача сообщений боту из телеграма
+#ГЏГҐГ°ГҐГ¤Г Г·Г  Г±Г®Г®ГЎГ№ГҐГ­ГЁГ© ГЎГ®ГІГі ГЁГ§ ГІГҐГ«ГҐГЈГ°Г Г¬Г 
 bot.polling(none_stop=True, interval=0)
 
 
